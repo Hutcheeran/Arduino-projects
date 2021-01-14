@@ -16,7 +16,7 @@ void setup(){
 int r = 255;
 int g = 0;
 int b = 0;
-int del = 100;
+int del = 50;
 
 void loop(){
     for (int i = 0; i < 255; i++)
