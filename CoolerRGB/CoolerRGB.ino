@@ -8,8 +8,6 @@ int g = 0;
 int b = 0;
 int del = 50;
 
-int status;
-
 void setup(){
     pinMode(RED, OUTPUT);
     pinMode(BLUE, OUTPUT);
