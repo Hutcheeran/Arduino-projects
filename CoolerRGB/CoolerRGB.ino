@@ -1,8 +1,7 @@
 #define BLUE 6 
 #define GREEN 5 
 #define RED 3
-#define BUTTON 9 
-#define LED 3 5 6 
+#define BUTTON 9
 
 int r = 255;
 int g = 0;
@@ -22,8 +21,6 @@ void setup(){
 }
 
 void colourChange(){
-    r = 255; //make sure that you always have R
-
     for (int i = 0; i < 255; i++)
     {
         r--;
@@ -59,13 +56,16 @@ void turnOff(){
 }
 
 int state = 0;
-// for now only 0 or 1:
+// 0 - off
 // 1 - red
-// off
+// 2 - green 
+// 3 - blue 
+// 4 - colour fade 
 
 void loop(){
+    //whenever the button gets pressed, it updates the state 
     if (digitalRead(BUTTON) == LOW){
-        state = (state + 1) % 4;
+        state = (state + 1) % 5; //resets to 0 after it gets to 4 
         delay(500);
     }
 
@@ -74,7 +74,7 @@ void loop(){
             turnOff();
             break;
         case 1: 
-            turnOff();
+            turnOff(); //resets everything -- otherwise colours get "stacked"
             digitalWrite(RED, HIGH);
             break;
         case 2:
@@ -85,10 +85,10 @@ void loop(){
             turnOff();
             digitalWrite(BLUE, HIGH);
             break;
-        /* case 4:
+        case 4:
         //problem --> doesn't turn off when you push again the button
             turnOff();
             colourChange();
-            break; */
+            break;
     }
 }
